@@ -1,113 +1,239 @@
-import Image from "next/image";
+"use client";  // Ensure this is present for client-side rendering
+
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link'; // Import Link for navigation
+import Footer from '../app/components/Footer'; // Import Footer component
+import Header from '../app/components/Header'; // Import Header component
+
+interface Item {
+  name: string;
+  price: string;
+  image: string;
+}
 
 export default function Home() {
+  // State to track cart items
+  const [cart, setCart] = useState<Item[]>([]);
+
+  // Handle Add to Cart functionality
+  const handleAddToCart = (item: Item) => {
+    setCart((prevCart) => [...prevCart, item]);  // Add item to cart state
+    alert(`${item.name} has been added to your cart!`); // Show confirmation
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <Header />
+
+      <section className="hero">
+        <div>
+          <div className="font-serif mt-10 mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold whitespace-nowrap flex flex-col items-center">
+            <p>WELCOME</p>
+            <p>TO</p>
+            <p>RUBAB</p>
+            <p>ELITE</p>
+            <p>SHOP</p>
+          </div>
+
+          <h1 className='font-semibold mt-40 text-center text-1xl'>The Best Store To Shop Online</h1>
+          <p className="mb-8 mt-40 text-sm ">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br /> 
+            Proin egestas orci quis mi convallis ipsum.
+          </p>
+          <div className="flex items-center justify-center mt-10">
+            <Link 
+              href="/ShopNowButton" 
+              className="bg-black hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg"
+            >
+              Shop Now
+            </Link>
+          </div>
         </div>
-      </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+        <div className="imageContent -ml-40 flex items-center justify-evenly">
+          <Image 
+            src={'/bagss.jpg'} 
+            alt="Fashion Model" 
+            layout="responsive" 
+            width={1000} 
+            height={800} 
+            className="w-full max-w-[1000]"
+          />
+        </div>
+      </section>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      <section className="new-arrivals bg-gray-400 py-12 px-4 flex flex-col items-center mb-60">
+        <h2 className="text-3xl text-black font-bold flex justify-items-center bg-pink-200">New Arrivals</h2>
+        <p className="text-gray-600 font-serif mb-60">Discover our latest products!</p>
+        <div className="image-grid">
+          {/* New Arrival Item 1 */}
+          <div className="group">
+            <Image src="/menpic4.jpg" alt="Stylish Jacket" width={300} height={250} className="rounded-lg" />
+            <h3 className="text-xl font-semibold mt-4">Shirt Trouser</h3>
+            <p className="text-gray-500 mt-1">$49.99</p>
+            <button className="add-to-cart" onClick={() => handleAddToCart({ name: 'Shirt Trouser', price: '$49.99', image: '/menpic4.jpg' })}>
+              Add to Cart
+            </button>
+          </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+          {/* New Arrival Item 2 */}
+          <div className="group">
+            <Image src="/menpic5.jpg" alt="Casual Sneakers" width={300} height={250} className="rounded-lg" />
+            <h3 className="text-xl font-semibold mt-4">Shirt Trouser</h3>
+            <p className="text-gray-500 mt-1">$39.99</p>
+            <button className="add-to-cart" onClick={() => handleAddToCart({ name: 'Shirt Trouser', price: '$39.99', image: '/menpic5.jpg' })}>
+              Add to Cart
+            </button>
+          </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+          {/* New Arrival Item 3 */}
+          <div className="group">
+            <Image src="/menpic2.jpg" alt="Classic Watch" width={300} height={250} className="rounded-lg" />
+            <h3 className="text-xl font-semibold mt-4">Shirt Trouser</h3>
+            <p className="text-gray-500 mt-1">$99.99</p>
+            <button className="add-to-cart" onClick={() => handleAddToCart({ name: 'Shirt Trouser', price: '$99.99', image: '/menpic2.jpg' })}>
+              Add to Cart
+            </button>
+          </div>
+{/* New Arrival Item 4 */}
+<div className="group">
+            <Image src="/menpic1.jpg" alt="Elegant Handbag" width={300} height={250} className="rounded-lg" />
+            <h3 className="text-xl font-semibold mt-4">Shirt Trouser</h3>
+            <p className="text-gray-500 mt-1">$59.99</p>
+            <button className="add-to-cart" onClick={() => handleAddToCart({ name: 'Shirt Trouser', price: '$99.99', image: '/menpic2.jpg' })}>
+              Add to Cart
+            </button>
+          </div>
+          {/* New Arrival Item 5*/}
+          <div className="group">
+            <Image src="/men1.jpg" alt="Elegant Handbag" width={300} height={250} className="rounded-lg" />
+            <h3 className="text-xl font-semibold mt-4">Coat Pant</h3>
+            <p className="text-gray-500 mt-1">$59.99</p>
+            <button className="add-to-cart" onClick={() => handleAddToCart({ name: 'Coat Pant', price: '$99.99', image: '/menpic2.jpg' })}>
+              Add to Cart
+            </button>
+          </div>
+          {/* New Arrival Item 6 */}
+          <div className="group">
+            <Image src="/men2.jpg" alt="Elegant Handbag" width={300} height={250} className="rounded-lg" />
+            <h3 className="text-xl font-semibold mt-4">Coat Pant</h3>
+            <p className="text-gray-500 mt-1">$59.99</p>
+            <button className="add-to-cart" onClick={() => handleAddToCart({ name: 'Coat Pant', price: '$99.99', image: '/menpic2.jpg' })}>
+              Add to Cart
+            </button>
+          </div>
+          {/* New Arrival Item 7 */}
+          <div className="group">
+            <Image src="/child1.jpg" alt="Elegant Handbag" width={300} height={250} className="rounded-lg" />
+            <h3 className="text-xl font-semibold mt-4">Shirt Pant</h3>
+            <p className="text-gray-500 mt-1">$59.99</p>
+            <button className="add-to-cart" onClick={() => handleAddToCart({ name: 'Shirt Pant', price: '$99.99', image: '/menpic2.jpg' })}>
+              Add to Cart
+            </button>
+          </div>
+          {/* New Arrival Item 8 */}
+          <div className="group">
+            <Image src="/child2.jpg" alt="Elegant Handbag" width={300} height={250} className="rounded-lg" />
+            <h3 className="text-xl font-semibold mt-4">Shirt Pant</h3>
+            <p className="text-gray-500 mt-1">$59.99</p>
+            <button className="add-to-cart" onClick={() => handleAddToCart({ name: 'Shirt Pant', price: '$99.99', image: '/menpic2.jpg' })}>
+              Add to Cart
+            </button>
+          </div>
+        
+          {/* Additional items follow the same pattern */}
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <Footer />
+
+      <style jsx>{`
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        .hero {
+          display: flex;
+          justify-content: space-between;
+          padding: 5px 5%;
+          background-color: #f5e4e3;
+          align-items: center;
+        }
+
+        .textContent {
+          max-width: 50%;
+        }
+
+        .textContent h1 {
+          font-size: 3rem;
+          margin-bottom: 20px;
+        }
+
+        .textContent p {
+          font-size: 1rem;
+          margin-bottom: 20px;
+        }
+
+        .shopBtn {
+          background-color: black;
+          color: white;
+          padding: 5px 5px;
+          text-decoration: none;
+          font-weight: bold;
+        }
+
+        .imageContent img {
+          width: 400px;
+          height: auto;
+          border-radius: 10px;
+        }
+
+        .new-arrivals {
+          padding: 3rem 0;
+          text-align: center;
+          background-color: #f5e4e3;
+          padding: 30px;
+          border-radius: 20px;
+        }
+
+        .image-grid {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .group {
+          background-color: white;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          text-align: center;
+          width: 250px;
+          transition: transform 0.3s ease;
+        }
+
+        .group:hover {
+          transform: translateY(-5px);
+        }
+
+        .add-to-cart {
+          background-color: #000;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 5px;
+          margin-top: 10px;
+          cursor: pointer;
+        }
+
+        .add-to-cart:hover {
+          background-color: #333;
+        }
+      `}</style>
+    </>
   );
 }
