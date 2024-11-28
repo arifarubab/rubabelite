@@ -1,0 +1,3 @@
+[submodule "my-shoppingweb"]
+  path = shoppingweb
+  url = https://github.com/arifarubab/rubabliteshop.git
