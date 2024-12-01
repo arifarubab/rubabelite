@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, Trash } from "lucide-react"; // Import icons from lucide-react
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
